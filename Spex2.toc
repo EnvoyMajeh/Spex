@@ -1,8 +1,8 @@
 ## Interface: 70300
-## Title:  Spex2
-## Notes:  Testing...
+## Title:  Spex(WIP)
+## Notes:  (WIP) To-Do: spex frame, dropdown menu, spec switch, repositioning, save/load location.  Completed: Events, spec table.
 ## Author: EnvoyMajeh
 ## DefaultState: enabled
-## SavedVariables: Spex2DB
+## SavedVariables: Spex
 
 Spex2.lua
