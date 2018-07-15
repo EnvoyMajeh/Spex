@@ -3,6 +3,6 @@
 ## Notes:  (WIP) To-Do: spex frame, dropdown menu, spec switch, repositioning, save/load location.  Completed: Events, spec table.
 ## Author: EnvoyMajeh
 ## DefaultState: enabled
-## SavedVariables: Spex
+## SavedVariables: SpexDB
 
-Spex2.lua
+Spex.lua

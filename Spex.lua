@@ -1,6 +1,5 @@
---print("Sanity Check")
-
 local Spex = {}
+
 
 
 local role_icon = {
@@ -10,8 +9,12 @@ local role_icon = {
 	NONE	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t"
 }
 
+local function pline(string, ...)
+	print("[Spex]: ",string, ...)
+end
+
 local function CreateSpecTable()
-	--print("entering CreateSpecTable()")
+	pline("entering CreateSpecTable()")
 	
 	Spex.numSpecs = GetNumSpecializations()
 	
@@ -21,23 +24,24 @@ local function CreateSpecTable()
 		_, Spex["spec"..i]["name"], _, Spex["spec"..i]["icon"], Spex["spec"..i]["role"], _ = GetSpecializationInfo(i)
 		Spex["spec"..i]["icon"] = "|T" .. Spex["spec"..i]["icon"] .. ":0|t"
 		Spex["spec"..i]["role"] = role_icon[Spex["spec"..i]["role"]]
-		--print(Spex["spec"..i]["id"],Spex["spec"..i]["role"],Spex["spec"..i]["name"],Spex["spec"..i]["icon"])
+		pline(Spex["spec"..i]["id"],Spex["spec"..i]["role"],Spex["spec"..i]["name"],Spex["spec"..i]["icon"])
 	end
 	
-	--print("leaving CreateSpecTable()")
+	pline("leaving CreateSpecTable()")
 end
 
 local function HandleEvent(self, event, ...)
-	print("Entering HandleEvent on "..event)
+	pline("Entering HandleEvent on "..event)
 	if not Spex["spec1"] then
 		CreateSpecTable()
 	end
 	
-	--print(Spex.numSpecs)
-	--print(Spex["spec1"]["id"],Spex["spec1"]["role"],Spex["spec1"]["name"],Spex["spec1"]["icon"])
+	--pline(Spex.numSpecs)
+	--pline(Spex["spec1"]["id"],Spex["spec1"]["role"],Spex["spec1"]["name"],Spex["spec1"]["icon"])
 	
 end
 
+pline("Sanity Check")
 
 local f = CreateFrame("Frame")
 
