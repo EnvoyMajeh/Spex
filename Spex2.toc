@@ -1,8 +1,8 @@
 ## Interface: 70300
-## Title:  Spex(WIP)
-## Notes:  (WIP) Done: Events, spec table.  To-Do: create spex frame, make dropdown menu, populate dropdown menu, enable spec change on drop down selection, allow repositioning, save location to savedvariables, load location from savedvariables.
+## Title:  Spex2
+## Notes:  Testing...
 ## Author: EnvoyMajeh
 ## DefaultState: enabled
-## SavedVariables: Spex
+## SavedVariables: Spex2DB
 
 Spex2.lua
