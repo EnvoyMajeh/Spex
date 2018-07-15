@@ -1,0 +1,8 @@
+## Interface: 70300
+## Title:  Spex2
+## Notes:  Testing...
+## Author: EnvoyMajeh
+## DefaultState: enabled
+## SavedVariables: Spex2DB
+
+Spex2.lua
