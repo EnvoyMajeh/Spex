@@ -21,10 +21,18 @@ local function CreateSpecTable()
 	for i = 1, Spex.numSpecs do
 		Spex["spec"..i] = {}
 		Spex["spec"..i]["id"] = i
-		_, Spex["spec"..i]["name"], _, Spex["spec"..i]["icon"], Spex["spec"..i]["role"], _ = GetSpecializationInfo(i)
-		Spex["spec"..i]["icon"] = "|T" .. Spex["spec"..i]["icon"] .. ":0|t"
-		Spex["spec"..i]["role"] = role_icon[Spex["spec"..i]["role"]]
-		pline(Spex["spec"..i]["id"],Spex["spec"..i]["role"],Spex["spec"..i]["name"],Spex["spec"..i]["icon"])
+		
+		local _, name, _, icon, role, _ = GetSpecializationInfo(i)
+		
+		--pline(name,icon,role)
+		
+		Spex["spec"..i]["text"] = role_icon[role] .. name .. "|T" .. icon .. ":0|t"
+		
+		--Spex["spec"..i]["icon"] = "|T" .. icon .. ":0|t"
+		--Spex["spec"..i]["role"] = role_icon[role]
+		--Spex["spec"..i]["text"] = Spex["spec"..i]["role"] .. Spex["spec"..i]["name"] .. Spex["spec"..i]["icon"]
+		
+		pline(Spex["spec"..i]["id"],Spex["spec"..i]["text"])
 	end
 	
 	pline("leaving CreateSpecTable()")
