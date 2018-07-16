@@ -1,6 +1,6 @@
 ## Interface: 70300
-## Title:  Spex(WIP)
-## Notes:  (WIP) To-Do: spex frame, dropdown menu, spec switch, repositioning, save/load location.  Completed: Events, spec table.
+## Title:  Spex
+## Notes:  Creates a movable drop-down menu that allows you to switch specs.
 ## Author: EnvoyMajeh
 ## DefaultState: enabled
 ## SavedVariables: SpexDB
