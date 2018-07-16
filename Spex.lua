@@ -1,20 +1,18 @@
 local Spex = {}
 
-
-
-local role_icon = {
-	TANK	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:0:19:21:40|t",
-	HEALER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:0:19|t",
-	DAMAGER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t",
-	NONE	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t"
-}
-
 local function pline(string, ...)
 	print("[Spex]: ",string, ...)
 end
 
 local function CreateSpecTable()
-	pline("entering CreateSpecTable()")
+	--pline("entering CreateSpecTable()")
+	
+	local role_icon = {
+	TANK	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:0:19:21:40|t",
+	HEALER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:0:19|t",
+	DAMAGER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t",
+	NONE	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t"
+	}
 	
 	Spex.numSpecs = GetNumSpecializations()
 	
@@ -29,13 +27,12 @@ local function CreateSpecTable()
 		Spex["spec"..i]["text"] = role_icon[role] .. name .. "|T" .. icon .. ":0|t"
 		
 		--Spex["spec"..i]["icon"] = "|T" .. icon .. ":0|t"
-		--Spex["spec"..i]["role"] = role_icon[role]
-		--Spex["spec"..i]["text"] = Spex["spec"..i]["role"] .. Spex["spec"..i]["name"] .. Spex["spec"..i]["icon"]
+		--Spex["spec"..i]["role"] = role_icon[role]+
 		
 		pline(Spex["spec"..i]["id"],Spex["spec"..i]["text"])
 	end
 	
-	pline("leaving CreateSpecTable()")
+	--pline("leaving CreateSpecTable()")
 end
 
 local function HandleEvent(self, event, ...)
@@ -49,10 +46,9 @@ local function HandleEvent(self, event, ...)
 	
 end
 
-pline("Sanity Check")
+--pline("Sanity Check")
 
-local f = CreateFrame("Frame")
-
-f:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
-f:RegisterEvent("SPELLS_CHANGED")
-f:SetScript("OnEvent", HandleEvent)
+local events = CreateFrame("Frame")
+events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+events:RegisterEvent("SPELLS_CHANGED")
+events:SetScript("OnEvent", HandleEvent)
