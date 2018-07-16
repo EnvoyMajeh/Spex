@@ -1,14 +1,12 @@
 --------------------------------------------------------------------------------
 -- Spex(Spex.lua) --
 --------------------------------------------------------------------------------
-
 --[[ Creating the overarching table for storing
 		 all necessary info for the addon. ]]--
 local Spex = {}
 --------------------------------------------------------------------------------
 -- Functions --
 --------------------------------------------------------------------------------
-
 local function pline(line, ...)
 	--[[ Prints all parameters given prefixed with [Spex]:
 		 Primarily used for debugging purposes. ]]--
@@ -181,12 +179,11 @@ local function HandleEvent(self, event, ...)
 	--pline("exiting HandleEvent() on "..event)
 end -- end HandleEvent()
 
-
---pline("Sanity Check")
-
 --------------------------------------------------------------------------------
 -- Initialization --
 --------------------------------------------------------------------------------
+--pline("Sanity Check")
+
 --[[ creates event checker and runs
 		 HandleEvent() when a registered event happens ]]--
 local events = CreateFrame("Frame")
