@@ -4,7 +4,6 @@
 
 --[[ Creating the overarching table for storing all necessary info for the addon. ]]--
 local Spex = {}
-
 -----------------------------------------------------------------------------------------------------------
 -- Functions --
 -----------------------------------------------------------------------------------------------------------
@@ -67,6 +66,7 @@ local function CreateDropDown(self, level)
 	
 	for i = 1, Spex.numSpecs do
 		--[[ looping through total number of specs in player class ]]--
+		--pline(level)
 		
 		--[[ initialize a blank DropDownMenuItem ]]--
 		local dropDownMenuItem = UIDropDownMenu_CreateInfo()
@@ -74,6 +74,7 @@ local function CreateDropDown(self, level)
 		--[[ Sets the DropDownMenuItem text and value equal to the
 			 spec table ["text"] and ["id"] entries respectively ]]--
 		dropDownMenuItem.text = Spex["spec"..i]["text"]
+		--pline(dropDownMenuItem.text)
 		dropDownMenuItem.value = Spex["spec"..i]["id"]
 		
 		
@@ -89,6 +90,7 @@ local function CreateDropDown(self, level)
 		
 		--[[ Adds the customized button to the DropDownMenu ]]--
 		UIDropDownMenu_AddButton(dropDownMenuItem, level)
+		--UIDropDownMenu_AddButton(dropDownMenuItem, 1)
 	end -- end for i, numSpecs
 	
 	--pline("exiting CreateDropDown()")
@@ -140,8 +142,8 @@ local function CreateSpexFrame()
 	UIDropDownMenu_Initialize(Spex.SpexFrame, CreateDropDown)
 	UIDropDownMenu_SetWidth(Spex.SpexFrame, 120)
 	UIDropDownMenu_SetButtonWidth(Spex.SpexFrame, 124)
-	UIDropDownMenu_SetSelectedID(Spex.SpexFrame, 1)
 	UIDropDownMenu_JustifyText(Spex.SpexFrame, "LEFT")
+	UIDropDownMenu_SetSelectedID(Spex.SpexFrame, 1)
 	
 	--pline("exiting CreateSpexFrame()")
 end -- end CreateSpexFrame()
@@ -169,6 +171,7 @@ local function HandleEvent(self, event, ...)
 	--pline("exiting HandleEvent() on "..event)
 end -- end HandleEvent()
 
+
 --pline("Sanity Check")
 
 -----------------------------------------------------------------------------------------------------------
@@ -176,6 +179,6 @@ end -- end HandleEvent()
 -----------------------------------------------------------------------------------------------------------
 --[[ creates event checker and runs HandleEvent() when a registered event happens ]]--
 local events = CreateFrame("Frame")
---events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED") -- probably unnecessary, leaving for future
-events:RegisterEvent("SPELLS_CHANGED") -- identifies when the player's spec changes
+events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+events:RegisterEvent("SPELLS_CHANGED")
 events:SetScript("OnEvent", HandleEvent)
