@@ -163,14 +163,16 @@ local function HandleEvent(self, event, ...)
 
 	--pline("Entering HandleEvent() on "..event)
 
-
+	--[[ checking for existing spec table and spexframe.
+	 		 if none exist, create them.  prevents duplicates ]]--
 	if not Spex["spec1"] then
 		CreateSpecTable()
 	end -- end if not Spex["spec1"]
-	--[[ checking for existing spec table and spexframe.
-	 		 if none exist, create them.  prevents duplicates ]]--
 	if not Spex.SpexFrame then
 		CreateSpexFrame()
+		--[[ adding spec change event to be watched now that
+		 		 spex frame has been initialized ]]--
+		Spex.events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 	end -- end if not Spex.SpexFrame
 
 	--[[ Updates DropDownMenu ]]--
@@ -179,31 +181,17 @@ local function HandleEvent(self, event, ...)
 	--pline("exiting HandleEvent() on "..event)
 end -- end HandleEvent()
 
+
 --------------------------------------------------------------------------------
 -- Initialization --
 --------------------------------------------------------------------------------
 --pline("Sanity Check")
 
---[[ creates event checker and runs
-		 HandleEvent() when a registered event happens ]]--
+--[[ create frame to watch events in order to initialize
+		 and update spexframe with changes ]]--
 Spex.events = CreateFrame("Frame")
-Spex.events:RegisterEvent("PLAYER_ALIVE")
-Spex.events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+--[[ watching PLAYER_ENTERING_WORLD and PLAYER_ALIVE to initialize ]]
 Spex.events:RegisterEvent("PLAYER_ENTERING_WORLD")
--- events:SetScript("OnEvent", HandleEvent)
+Spex.events:RegisterEvent("PLAYER_ALIVE")
+--[[ runs HandleEvent when an event fires ]]--
 Spex.events:SetScript("OnEvent", HandleEvent)
-
-
-
--- events:SetScript("OnEvent", function(self, event)
--- 	--[[ attempting to delay the call for initial update
--- 	 		 to prevent incorrect display immediately after fresh login ]]--
--- 	if event == "PLAYER_ENTERING_WORLD" then
--- 		C_Timer.After(0, HandleEvent)
--- 	else -- else if event PLAYER_ENTERING_WORLD
--- 		C_Timer.After(0, HandleEvent)
--- 	end -- end if event PLAYER_ENTERING_WORLD
---
--- 	-- C_Timer.After(0, HandleEvent)
---
--- end) -- end function/SetScript
