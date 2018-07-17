@@ -186,16 +186,24 @@ end -- end HandleEvent()
 
 --[[ creates event checker and runs
 		 HandleEvent() when a registered event happens ]]--
-local events = CreateFrame("Frame")
-events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
-events:RegisterEvent("PLAYER_ENTERING_WORLD")
---events:RegisterEvent("SPELLS_CHANGED")
-events:SetScript("OnEvent", function(self, event)
-	--[[ attempting to delay the call for initial update
-	 		 to prevent incorrect display immediately after fresh login ]]--
-	if event == "PLAYER_ENTERING_WORLD" then
-		C_Timer.After(10, HandleEvent)
-	else -- else if event PLAYER_ENTERING_WORLD
+Spex.events = CreateFrame("Frame")
+Spex.events:RegisterEvent("PLAYER_ALIVE")
+Spex.events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+Spex.events:RegisterEvent("PLAYER_ENTERING_WORLD")
+-- events:SetScript("OnEvent", HandleEvent)
+Spex.events:SetScript("OnEvent", HandleEvent)
 
-	end -- end if event PLAYER_ENTERING_WORLD
-end) -- end function/SetScript
+
+
+-- events:SetScript("OnEvent", function(self, event)
+-- 	--[[ attempting to delay the call for initial update
+-- 	 		 to prevent incorrect display immediately after fresh login ]]--
+-- 	if event == "PLAYER_ENTERING_WORLD" then
+-- 		C_Timer.After(0, HandleEvent)
+-- 	else -- else if event PLAYER_ENTERING_WORLD
+-- 		C_Timer.After(0, HandleEvent)
+-- 	end -- end if event PLAYER_ENTERING_WORLD
+--
+-- 	-- C_Timer.After(0, HandleEvent)
+--
+-- end) -- end function/SetScript
