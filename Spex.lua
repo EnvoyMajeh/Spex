@@ -35,9 +35,23 @@ local function CreateDropDown(self, level)
   end -- end of for i = 1, GetNumSpecializations() --
 end -- end of CreateDropDown(self, level) --
 
+-- returns text snippet for the given spec number --
+local function makeText(specID)
+  local role_icon = {
+	-- Table of role icons for use in creating the text line. --
+	TANK	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:0:19:21:40|t",
+	HEALER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:0:19|t",
+	DAMAGER	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t",
+	NONE	= "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:20:20:0:0:64:64:20:39:21:40|t"
+	} -- end of role_icon{}
+  local _, name, _, icon, role, _ = GetSpecializationInfo(specID)
+  return role_icon[role] .. name .. "|T" .. icon .. ":0|t"
+end -- end of makeText(specID)
+
 -- updates the selected menu item to the active spec --
 local function Update()
   UIDropDownMenu_SetSelectedID(SpexFrame, GetSpecialization())
+  UIDropDownMenu_SetText(SpexFrame, makeText(GetSpecialization()))
 end -- end of Update() --
 
 -- sets initial frame, dropdown and event settings --
